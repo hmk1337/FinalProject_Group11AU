@@ -79,6 +79,10 @@ while True:
 
 	frame = vs.read()
 	frame = imutils.resize(frame, width=800)
+	
+	font = cv2.FONT_HERSHEY_SIMPLEX
+	cv2.putText(frame, 'Ksatria Airlangga', (500, 60), font, 1, (32, 48, 144), 2, cv2.LINE_AA)
+	
 	(locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
 	for (box, pred) in zip(locs, preds):
 		(startX, startY, endX, endY) = box
