@@ -12,7 +12,7 @@ import time
 import cv2
 import threading
 from multiprocessing import Process
-
+import subprocess
 
 import os
 
@@ -71,11 +71,11 @@ vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
 
+
+
 while True:
-
 	def sound():
-		playsound('Z:\\Astrai\\ctk\\face-mask-detector-master\\df.mp3')
-
+		beep.beep()
 
 	frame = vs.read()
 	frame = imutils.resize(frame, width=800)
@@ -90,12 +90,11 @@ while True:
 		cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 		if withoutMask > mask:
-			sound  = threading.Thread(target=sound, args=[])
+			sound = threading.Thread(target=sound, args=[])
 			sound.start()
 
-
 	cv2.imshow("Frame", frame)
-	print(pred)
+
 	key = cv2.waitKey(1) & 0xFF
 
 	# kalau mau keluar frame ketik q
